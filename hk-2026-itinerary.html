@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hong Kong Family Adventure 🇭🇰</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #E8223A;
+    --gold: #F4A623;
+    --navy: #0D1B3E;
+    --sky: #4BBDE8;
+    --cream: #FFF8F0;
+    --white: #FFFFFF;
+    --soft: #F0F4FF;
+    --text: #1A1A2E;
+    --muted: #6B7590;
+    --disney: #6B3FA0;
+    --nature: #2E7D52;
+    --culture: #C0392B;
+    --shopping: #E67E22;
+    --shadow: 0 4px 24px rgba(13,27,62,0.10);
+    --shadow-lg: 0 12px 48px rgba(13,27,62,0.18);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(160deg, var(--navy) 0%, #1a3a7a 55%, var(--red) 100%);
+    color: white;
+    padding: 60px 20px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .flag-row { font-size: 2.5rem; margin-bottom: 12px; }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 900;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+  .hero h1 span { color: var(--gold); }
+  .hero-sub {
+    font-size: 1.05rem;
+    opacity: 0.85;
+    font-weight: 300;
+    margin-bottom: 28px;
+    letter-spacing: 0.5px;
+  }
+  .badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .badge {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    backdrop-filter: blur(4px);
+  }
+
+  /* NAV TABS */
+  .tabs-wrapper {
+    background: var(--navy);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 0 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+  }
+  .tabs {
+    display: flex;
+    overflow-x: auto;
+    gap: 4px;
+    max-width: 900px;
+    margin: 0 auto;
+    scrollbar-width: none;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab {
+    flex-shrink: 0;
+    padding: 14px 16px;
+    color: rgba(255,255,255,0.55);
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    white-space: nowrap;
+    text-transform: uppercase;
+    user-select: none;
+  }
+  .tab:hover { color: rgba(255,255,255,0.85); }
+  .tab.active {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+  }
+
+  /* MAIN CONTENT */
+  .content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 28px 16px 60px;
+  }
+
+  /* DAY SECTION */
+  .day-section { display: none; animation: fadeIn 0.35s ease; }
+  .day-section.active { display: block; }
+  @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+
+  .day-header {
+    border-radius: 20px;
+    padding: 24px 28px;
+    margin-bottom: 24px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .day-header::after {
+    content: attr(data-emoji);
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 4rem;
+    opacity: 0.25;
+  }
+  .day-header .day-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.8;
+    margin-bottom: 6px;
+  }
+  .day-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .bg-disney { background: linear-gradient(135deg, #4B2C8C, #8E44AD); }
+  .bg-arrival { background: linear-gradient(135deg, #1a3a7a, #2980b9); }
+  .bg-city { background: linear-gradient(135deg, #C0392B, #E74C3C); }
+  .bg-nature { background: linear-gradient(135deg, #1E8449, #27AE60); }
+  .bg-culture { background: linear-gradient(135deg, #D35400, #E67E22); }
+  .bg-departure { background: linear-gradient(135deg, #2C3E50, #4A5568); }
+
+  /* TIMELINE */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 9px;
+    top: 6px;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--sky), transparent);
+  }
+
+  .tl-item {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  .tl-dot {
+    position: absolute;
+    left: -32px;
+    top: 8px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: white;
+    border: 3px solid var(--sky);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    z-index: 1;
+  }
+  .tl-dot.gold { border-color: var(--gold); }
+  .tl-dot.red { border-color: var(--red); }
+  .tl-dot.green { border-color: #27AE60; }
+
+  .card {
+    background: white;
+    border-radius: 16px;
+    padding: 18px 20px;
+    box-shadow: var(--shadow);
+    border-left: 4px solid transparent;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+  }
+  .card.blue-border { border-left-color: var(--sky); }
+  .card.gold-border { border-left-color: var(--gold); }
+  .card.red-border { border-left-color: var(--red); }
+  .card.green-border { border-left-color: #27AE60; }
+  .card.purple-border { border-left-color: #8E44AD; }
+  .card.orange-border { border-left-color: #E67E22; }
+
+  .card-time {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .card-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 2px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-title .icon { font-size: 1.15rem; }
+  .card-loc {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .card-notes {
+    font-size: 0.85rem;
+    color: #444;
+    line-height: 1.6;
+  }
+  .pill-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+  }
+  .pill {
+    background: var(--soft);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 0.77rem;
+    font-weight: 500;
+    color: var(--navy);
+  }
+  .pill.highlight { background: #FEF3C7; color: #92400E; }
+  .pill.tip { background: #ECFDF5; color: #065F46; }
+
+  .tip-box {
+    background: linear-gradient(135deg, #FEF3C7, #FDE68A);
+    border-radius: 14px;
+    padding: 14px 18px;
+    margin-top: 16px;
+    font-size: 0.85rem;
+    color: #78350F;
+    font-weight: 500;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .tip-box .tip-icon { font-size: 1.2rem; flex-shrink: 0; }
+
+  /* OPTIONS LIST */
+  .options-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 8px;
+  }
+  .options-list li {
+    font-size: 0.85rem;
+    color: #444;
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .options-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--sky);
+    font-weight: 700;
+  }
+
+  /* OVERVIEW MAP */
+  .overview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  .ov-card {
+    background: white;
+    border-radius: 16px;
+    padding: 18px;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    transition: all 0.2s;
+    border-top: 4px solid var(--sky);
+    text-align: center;
+  }
+  .ov-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+  .ov-card .ov-day { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); margin-bottom: 4px; }
+  .ov-card .ov-emoji { font-size: 2rem; margin-bottom: 6px; }
+  .ov-card .ov-title { font-size: 0.9rem; font-weight: 600; color: var(--text); line-height: 1.3; }
+  .ov-card.d1 { border-top-color: #2980b9; }
+  .ov-card.d2 { border-top-color: #8E44AD; }
+  .ov-card.d3 { border-top-color: #8E44AD; }
+  .ov-card.d4 { border-top-color: #C0392B; }
+  .ov-card.d5 { border-top-color: #1E8449; }
+  .ov-card.d6 { border-top-color: #D35400; }
+  .ov-card.d7 { border-top-color: #2C3E50; }
+
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 24px 0 12px;
+  }
+
+  /* ESSENTIALS */
+  .essentials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 14px;
+  }
+  .ess-card {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+    text-align: center;
+  }
+  .ess-card .ess-icon { font-size: 2rem; margin-bottom: 8px; }
+  .ess-card .ess-title { font-size: 0.88rem; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+  .ess-card .ess-text { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+
+  /* Mobile tweaks */
+  @media (max-width: 600px) {
+    .hero { padding: 40px 16px 60px; }
+    .content { padding: 20px 12px 60px; }
+    .day-header { padding: 20px; }
+    .card { padding: 14px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="flag-row">🇭🇰 ✈️ 🎢</div>
+  <h1>Hong Kong<br><span>Family Adventure</span></h1>
+  <div class="hero-sub">7 Days · Magic, Culture & City Lights</div>
+  <div class="badges">
+    <span class="badge">🎡 2 Days Disneyland</span>
+    <span class="badge">🌆 City Exploration</span>
+    <span class="badge">⛩️ Ngong Ping + Tai O</span>
+    <span class="badge">🌉 Harbour & The Peak</span>
+    <span class="badge">🌙 Temple Street Night Market</span>
+  </div>
+</div>
+
+<div class="tabs-wrapper">
+  <div class="tabs">
+    <div class="tab active" onclick="showDay('overview')">Overview</div>
+    <div class="tab" onclick="showDay('day1')">Day 1</div>
+    <div class="tab" onclick="showDay('day2')">Day 2</div>
+    <div class="tab" onclick="showDay('day3')">Day 3</div>
+    <div class="tab" onclick="showDay('day4')">Day 4</div>
+    <div class="tab" onclick="showDay('day5')">Day 5</div>
+    <div class="tab" onclick="showDay('day6')">Day 6</div>
+    <div class="tab" onclick="showDay('day7')">Day 7</div>
+    <div class="tab" onclick="showDay('essentials')">📌 Essentials</div>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- OVERVIEW -->
+  <div class="day-section active" id="overview">
+    <div class="section-label">Your 7-Day Journey at a Glance</div>
+    <div class="overview-grid">
+      <div class="ov-card d1" onclick="showDay('day1')">
+        <div class="ov-day">Day 1</div>
+        <div class="ov-emoji">✈️</div>
+        <div class="ov-title">Arrival & Disneyland Hotel Check-in</div>
+      </div>
+      <div class="ov-card d2" onclick="showDay('day2')">
+        <div class="ov-day">Day 2</div>
+        <div class="ov-emoji">🎢</div>
+        <div class="ov-title">Full Day at Disneyland</div>
+      </div>
+      <div class="ov-card d3" onclick="showDay('day3')">
+        <div class="ov-day">Day 3</div>
+        <div class="ov-emoji">🏨</div>
+        <div class="ov-title">Disneyland Morning + Transfer to City</div>
+      </div>
+      <div class="ov-card d4" onclick="showDay('day4')">
+        <div class="ov-day">Day 4</div>
+        <div class="ov-emoji">⭐</div>
+        <div class="ov-title">The Peak · Ferry · K11 · Harbour Night</div>
+      </div>
+      <div class="ov-card d5" onclick="showDay('day5')">
+        <div class="ov-day">Day 5</div>
+        <div class="ov-emoji">🌿</div>
+        <div class="ov-title">Ngong Ping 360 · Big Buddha · Tai O</div>
+      </div>
+      <div class="ov-card d6" onclick="showDay('day6')">
+        <div class="ov-day">Day 6</div>
+        <div class="ov-emoji">🌙</div>
+        <div class="ov-title">Museum · Dim Sum · Night Market</div>
+      </div>
+      <div class="ov-card d7" onclick="showDay('day7')">
+        <div class="ov-day">Day 7</div>
+        <div class="ov-emoji">🏠</div>
+        <div class="ov-title">Breakfast & Departure</div>
+      </div>
+    </div>
+
+    <div class="section-label">Hotels</div>
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:14px;">
+      <div class="card blue-border">
+        <div class="card-title"><span class="icon">🏰</span> Days 1–3</div>
+        <div class="card-loc">📍 Disney Explorer's Lodge</div>
+        <div class="card-notes">Your magical base for Disneyland days. Gardens, playground & pool.</div>
+      </div>
+      <div class="card red-border">
+        <div class="card-title"><span class="icon">🏙️</span> Days 3–7</div>
+        <div class="card-loc">📍 BP International, Jordan</div>
+        <div class="card-notes">City hotel for exploring Kowloon, Harbour & Lantau Island.</div>
+      </div>
+    </div>
+
+    <div class="tip-box" style="margin-top:20px;">
+      <span class="tip-icon">💡</span>
+      <div><strong>Family Tip:</strong> Tap the day cards above to jump straight to that day's detailed plan. Use the tabs at the top to quickly switch between days while you're on the go!</div>
+    </div>
+  </div>
+
+  <!-- DAY 1 -->
+  <div class="day-section" id="day1">
+    <div class="day-header bg-arrival" data-emoji="✈️">
+      <div class="day-label">Day 1</div>
+      <h2>Arrival + Disneyland Hotel Check-in</h2>
+    </div>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="card blue-border">
+          <div class="card-time">12:30 PM</div>
+          <div class="card-title"><span class="icon">✈️</span> Arrive at Airport</div>
+          <div class="card-loc">📍 Hong Kong International Airport</div>
+          <div class="card-notes">Clear immigration, collect luggage, and exchange currency at the airport if needed.</div>
+          <div class="pill-row">
+            <span class="pill highlight">🪙 Buy Octopus Card at the airport!</span>
+            <span class="pill highlight">🛒 Buy food &amp; snacks for dinner/breakfast</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="card blue-border">
+          <div class="card-time">1:30 – 2:00 PM</div>
+          <div class="card-title"><span class="icon">🚖</span> Airport → Hotel Transfer</div>
+          <div class="card-loc">📍 Disney Explorer's Lodge</div>
+          <div class="card-notes">Take a taxi to your hotel.</div>
+          <div class="pill-row">
+            <span class="pill">🚖 Taxi ~15–20 min</span>
+            <span class="pill">💰 ~HKD 120–150</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot gold"></div>
+        <div class="card gold-border">
+          <div class="card-time">3:00 PM</div>
+          <div class="card-title"><span class="icon">🏨</span> Check-in + Rest</div>
+          <div class="card-loc">📍 Disney Explorer's Lodge</div>
+          <div class="card-notes">Settle in, freshen up, and rest. You'll need energy for Disney days!</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="card blue-border">
+          <div class="card-time">5:00 PM</div>
+          <div class="card-title"><span class="icon">🌴</span> Explore the Hotel</div>
+          <div class="card-notes">Enjoy the hotel grounds — no need to rush anywhere today.</div>
+          <div class="pill-row">
+            <span class="pill">🌿 Gardens</span>
+            <span class="pill">🛝 Playground</span>
+            <span class="pill">🏊 Pool (if energy!)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot green"></div>
+        <div class="card green-border">
+          <div class="card-title"><span class="icon">🍽️</span> Dinner</div>
+          <div class="card-notes">Keep it easy tonight — hotel restaurant or use snacks you picked up at the airport.</div>
+          <div class="pill-row">
+            <span class="pill highlight">Hotel Restaurant</span>
+            <span class="pill">Quick meal nearby</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot red"></div>
+        <div class="card red-border">
+          <div class="card-title"><span class="icon">💤</span> Early Rest</div>
+          <div class="card-notes">Sleep early — important to recharge before the big Disney days!</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DAY 2 -->
+  <div class="day-section" id="day2">
+    <div class="day-header bg-disney" data-emoji="🎢">
+      <div class="day-label">Day 2</div>
+      <h2>Full Day at Disneyland 🎢</h2>
+    </div>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot green"></div>
+        <div class="card green-border">
+          <div class="card-time">8:30 AM</div>
+          <div class="card-title"><span class="icon">🍳</span> Breakfast at Hotel</div>
+          <div class="card-loc">📍 Disney Explorer's Lodge</div>
+          <div class="card-notes">Fuel up before a big day — eat a proper breakfast at the hotel!</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="card blue-border">
+          <div class="card-time">9:30 AM</div>
+          <div class="card-title"><span class="icon">🚌</span> Shuttle to Park</div>
+          <div class="card-loc">📍 Hotel → Hong Kong Disneyland</div>
+          <div class="card-notes">Take the hotel shuttle to the park entrance — arrive before it opens!</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot gold"></div>
+        <div class="card purple-border">
+          <div class="card-time">10:30 AM – Park Opens</div>
+          <div class="card-title"><span class="icon">🎢</span> Morning Rides</div>
+          <div class="card-loc">📍 Hong Kong Disneyland</div>
+          <div class="card-notes">Hit the big rides first while queues are shortest!</div>
+          <div class="pill-row">
+            <span class="pill highlight">❄️ Frozen</span>
+            <span class="pill highlight">🏛️ Mystic Manor</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="card blue-border">
+          <div class="card-title"><span class="icon">🎭</span> Afternoon — Rest + Shows</div>
+          <div class="card-notes">Take it easy in the afternoon when crowds and heat peak. Catch parades and shows instead of queuing for rides.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot green"></div>
+        <div class="card green-border">
+          <div class="card-title"><span class="icon">🍽️</span> Meals Inside the Park</div>
+          <div class="card-notes">Plan your meals to avoid hunger meltdowns!</div>
+          <div class="pill-row">
+            <span class="pill">🍱 1 main meal inside</span>
+            <span class="pill">🍿 Snacks throughout</span>
+            <span class="pill">🌆 Light dinner</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot gold"></div>
+        <div class="card gold-border">
+          <div class="card-title"><span class="icon">✨</span> Night — Momentous Nighttime Spectacular</div>
+          <div class="card-loc">📍 Hong Kong Disneyland</div>
+          <div class="card-notes">Don't miss the epic nighttime show to cap off the day — fireworks, projections, and Disney magic all in one!</div>
+          <div class="pill-row">
+            <span class="pill highlight">🎆 Must-see! Grab a good spot early</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="card blue-border">
+          <div class="card-title"><span class="icon">💤</span> Back to Hotel</div>
+          <div class="card-notes">Head back to Disney Explorer's Lodge and rest well — there's still more Disneyland tomorrow!</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="tip-box">
+      <span class="tip-icon">🎒</span>
+      <div><strong>What to Bring:</strong> Water bottle, snacks, portable fan / umbrella, extra shirt for the kids. Download the HK Disneyland app to check wait times and show schedules!</div>
+    </div>
+  </div>
+
+  <!-- DAY 3 -->
+  <div class="day-section" id="day3">
+    <div class="day-header bg-disney" data-emoji="🏙️">
+      <div class="day-label">Day 3</div>
+      <h2>Disneyland Until 4PM + Transfer to City</h2>
+    </div>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot green"></div>
+        <div class="card green-border">
+          <div class="card-title"><span class="icon">🍳</span> Breakfast at Hotel + Photos</div>
+          <div class="card-loc">📍 Disney Explorer's Lodge</div>
+          <div class="card-notes">Have breakfast at the hotel and take photos around the resort before heading to the park — last chance to capture the Disney hotel magic!</div>
+          <div class="pill-row">
+            <span class="pill highlight">📸 Take pictures around the resort!</span>
+            <span class="pill">🏰 Optional: Visit Disneyland Hotel lobby</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot gold"></div>
+        <div class="card purple-border">
+          <div class="card-title"><span class="icon">🎢</span> Morning to Afternoon at Disneyland</div>
+          <div class="card-loc">📍 Hong Kong Disneyland</div>
+          <div class="card-notes">Make the most of your final Disney hours — catch any rides you missed, revisit favorites, and enjoy last photo ops around the park!</div>
+          <div class="pill-row">
+            <span class="pill">⏰ Stay until 4:00 PM</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot red"></div>
+        <div class="card red-border">
+          <div class="card-time">4:00 PM</div>
+          <div class="card-title"><span class="icon">🧳</span> Exit Park + Collect Luggage</div>
+          <div class="card-loc">📍 Disney Explorer's Lodge</div>
+          <div class="card-notes">Head back to the hotel from the park to collect your stored luggage before departing. Ask the hotel to store your bags in the morning so you don't carry them into the park!</div>
+          <div class="pill-row">
+            <span class="pill tip">💡 Store bags at hotel front desk in the morning</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="card blue-border">
+          <div class="card-time">5:00 – 5:30 PM</div>
+          <div class="card-title"><span class="icon">🚖</span> Transfer to City Hotel</div>
+          <div class="card-loc">📍 BP International, Jordan</div>
+          <div class="card-notes">Grab a taxi from Disney Explorer's Lodge to your city base in Kowloon.</div>
+          <div class="pill-row">
+            <span class="pill">🚖 Taxi ~25–30 min</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot gold"></div>
+        <div class="card gold-border">
+          <div class="card-time">6:00 PM</div>
+          <div class="card-title"><span class="icon">🏨</span> Check-in + Rest</div>
+          <div class="card-loc">📍 BP International</div>
+          <div class="card-notes">Settle into your city hotel, unpack, and freshen up before a light evening out.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="card orange-border">
+          <div class="card-title"><span class="icon">🌆</span> Evening — Light Activity</div>
+          <div class="card-notes">Take it easy with a gentle neighbourhood explore.</div>
+          <ul class="options-list">
+            <li>Walk around Jordan area</li>
+            <li>Nearby food crawl to taste local eats</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot green"></div>
+        <div class="card green-border">
+          <div class="card-title"><span class="icon">🍜</span> Dinner Options</div>
+          <div class="card-notes">Try local favorites near the hotel:</div>
+          <div class="pill-row">
+            <span class="pill highlight">🍜 Mak Man Kee Noodle Shop</span>
+            <span class="pill highlight">🥟 DimDimSum Dim Sum Specialty</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DAY 4 -->
+  <div class="day-section" id="day4">
+    <div class="day-header bg-city" data-emoji="⭐">
+      <div class="day-label">Day 4 ⭐ Highlight Day</div>
+      <h2>Peak · Ferry · K11 · Harbour Night</h2>
+    </div>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot red"></div>
+        <div class="card red-border">
+          <div class="card-time">8:15 AM</div>
+          <div class="card-title"><span class="icon">🚶</span> Leave Hotel</div>
+          <div class="card-loc">📍 BP International</div>
+          <div class="card-notes">Head out early to beat the crowds at the Peak Tram.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="card blue-border">
+          <div class="card-time">8:15 – 8:45 AM</div>
+          <div class="card-title"><span class="icon">🚖</span> Go to Peak Tram</div>
+          <div class="card-loc">📍 Peak Tram Lower Terminus</div>
+          <div class="card-notes">Make your way to the Peak Tram station.</div>
+          <div class="pill-row">
+            <span class="pill">🚖 Taxi (easiest)</span>
+            <span class="pill">🚇 MTR + walk</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="card red-border">
+          <div class="card-time">9:00 – 9:30 AM</div>
+          <div class="card-title"><span class="icon">🚋</span> Peak Tram — Ride Up</div>
+          <div class="card-loc">📍 Peak Tram</div>
+          <div class="card-notes">The historic tram ride up is part of the experience — enjoy the steep climb and the views!</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot gold"></div>
+        <div class="card red-border">
+          <div class="card-time">9:30 – 11:00 AM</div>
+          <div class="card-title"><span class="icon">🌄</span> Victoria Peak — Explore</div>
+          <div class="card-loc">📍 Victoria Peak</div>
+          <div class="card-notes">Iconic Hong Kong views from the top!</div>
+          <ul class="options-list">
+            <li>🌿 Free viewing areas at the top</li>
+            <li>🚶 Lugard Road (short, scenic walk)</li>
+            <li>🏛️ Peak Galleria rooftop views</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="card blue-border">
+          <div class="card-time">11:00 – 11:20 AM</div>
+          <div class="card-title"><span class="icon">⬇️</span> Go Down from Peak</div>
+          <div class="card-notes">Head back down to Central.</div>
+          <div class="pill-row">
+            <span class="pill">🚖 Taxi (best option)</span>
+            <span class="pill">🚌 Bus</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot green"></div>
+        <div class="card green-border">
+          <div class="card-time">11:30 AM – 12:15 PM</div>
+          <div class="card-title"><span class="icon">🍽️</span> Lunch</div>
+          <div class="card-loc">📍 Yat Lok Roast Goose</div>
+          <div class="card-notes">Famous roast goose — a must-try Hong Kong classic!</div>
+          <div class="pill-row">
+            <span class="pill highlight">⭐ Michelin-Recommended</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="card blue-border">
+          <div class="card-time">12:15 – 12:30 PM</div>
+          <div class="card-title"><span class="icon">🚶</span> Walk to Central Ferry Piers</div>
+          <div class="card-loc">📍 Central Ferry Piers</div>
+          <div class="card-notes">Short walk from the restaurant to the ferry terminal.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="card blue-border">
+          <div class="card-time">12:30 – 12:45 PM</div>
+          <div class="card-title"><span class="icon">⛴️</span> Star Ferry Crossing</div>
+          <div class="card-loc">📍 Star Ferry</div>
+          <div class="card-notes">Cross Victoria Harbour on the iconic Star Ferry — one of the world's great short voyages!</div>
+          <div class="pill-row">
+            <span class="pill tip">💰 Very affordable!</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="card gold-border">
+          <div class="card-title"><span class="icon">📸</span> Clock Tower Quick Photo Stop</div>
+          <div class="card-loc">📍 Tsim Sha Tsui Clock Tower</div>
+          <div class="card-notes">5–10 min photo stop right at the ferry exit — iconic waterfront landmark!</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="card blue-border">
+          <div class="card-time">12:45 – 1:30 PM</div>
+          <div class="card-title"><span class="icon">🚶</span> Make Way to K11 Musea</div>
+          <div class="card-loc">📍 K11 Musea</div>
+          <div class="card-notes">Walk or grab a taxi to K11 Musea along the waterfront.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot gold"></div>
+        <div class="card orange-border">
+          <div class="card-time">1:30 – 5:30 PM</div>
+          <div class="card-title"><span class="icon">🛍️</span> K11 Musea — Rest Block</div>
+          <div class="card-loc">📍 K11 Musea</div>
+          <div class="card-notes">A long, relaxed block — art-infused mall perfect for resting tired feet.</div>
+          <ul class="options-list">
+            <li>😌 Sit and rest</li>
+            <li>🎨 Light shopping &amp; art installations</li>
+            <li>🌊 Harbour terrace (great views!)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot green"></div>
+        <div class="card green-border">
+          <div class="card-time">5:30 – 6:15 PM</div>
+          <div class="card-title"><span class="icon">🍽️</span> Dinner at Food Court</div>
+          <div class="card-loc">📍 K11 Musea Food Court</div>
+          <div class="card-notes">Grab dinner before heading to the waterfront for the evening show.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="card blue-border">
+          <div class="card-time">6:30 – 6:45 PM</div>
+          <div class="card-title"><span class="icon">🚶</span> Walk to Avenue of Stars</div>
+          <div class="card-loc">📍 Avenue of Stars</div>
+          <div class="card-notes">Short walk from K11 to the waterfront promenade.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot gold"></div>
+        <div class="card gold-border">
+          <div class="card-time">6:45 – 8:00 PM</div>
+          <div class="card-title"><span class="icon">🌇</span> Relax + Sunset at Avenue of Stars</div>
+          <div class="card-loc">📍 Avenue of Stars, Tsim Sha Tsui</div>
+          <div class="card-notes">Soak in the golden hour over Victoria Harbour before the main event!</div>
+          <div class="pill-row">
+            <span class="pill highlight">🌅 Sunset views</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot gold"></div>
+        <div class="card gold-border">
+          <div class="card-time">8:00 PM</div>
+          <div class="card-title"><span class="icon">✨</span> Symphony of Lights</div>
+          <div class="card-loc">📍 Victoria Harbour</div>
+          <div class="card-notes">The spectacular nightly light and sound show across the entire harbour skyline. Free!</div>
+          <div class="pill-row">
+            <span class="pill highlight">🎆 Starts exactly at 8:00 PM — don't be late!</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="card blue-border">
+          <div class="card-time">8:15 PM</div>
+          <div class="card-title"><span class="icon">🚖</span> Return to Hotel</div>
+          <div class="card-notes">Taxi or MTR back to BP International, Jordan.</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="tip-box">
+      <span class="tip-icon">🌟</span>
+      <div><strong>Symphony of Lights:</strong> Happens every night at 8:00 PM sharp! Grab a spot along the Avenue of Stars waterfront with a clear view of the harbour. Free!</div>
+    </div>
+  </div>
+
+  <!-- DAY 5 -->
+  <div class="day-section" id="day5">
+    <div class="day-header bg-nature" data-emoji="🌿">
+      <div class="day-label">Day 5</div>
+      <h2>Ngong Ping 360 + Big Buddha + Tai O Village</h2>
+    </div>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="card green-border">
+          <div class="card-time">8:30 AM</div>
+          <div class="card-title"><span class="icon">🚶</span> Walk to MTR Station</div>
+          <div class="card-loc">📍 Jordan MTR Station</div>
+          <div class="card-notes">Head out early — it's a long but rewarding day on Lantau Island!</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="card blue-border">
+          <div class="card-time">8:40 – 9:30 AM</div>
+          <div class="card-title"><span class="icon">🚇</span> MTR to Tung Chung</div>
+          <div class="card-loc">📍 Tung Chung Station</div>
+          <div class="card-notes">Take the MTR Tung Chung Line all the way to the terminus. Use your Octopus Card!</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot gold"></div>
+        <div class="card green-border">
+          <div class="card-time">10:00 – 10:25 AM</div>
+          <div class="card-title"><span class="icon">🚠</span> Ngong Ping 360 Cable Car</div>
+          <div class="card-loc">📍 Ngong Ping 360, Lantau Island</div>
+          <div class="card-notes">Breathtaking cable car ride over the mountains and coastline to Lantau's plateau. Spectacular views!</div>
+          <div class="pill-row">
+            <span class="pill tip">🎟️ Book tickets in advance online!</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot gold"></div>
+        <div class="card gold-border">
+          <div class="card-time">10:30 AM – 12:30 PM</div>
+          <div class="card-title"><span class="icon">🏯</span> Explore Ngong Ping Village</div>
+          <div class="card-notes">Take your time exploring these iconic landmarks:</div>
+          <ul class="options-list">
+            <li>🏘️ Ngong Ping Village walk</li>
+            <li>⛩️ <strong>Po Lin Monastery</strong> — tranquil Buddhist monastery</li>
+            <li>🗿 <strong>Tian Tan Buddha (Big Buddha)</strong> — climb 268 steps to the base! (Optional)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot green"></div>
+        <div class="card green-border">
+          <div class="card-time">12:30 – 1:15 PM</div>
+          <div class="card-title"><span class="icon">🍽️</span> Lunch at Ngong Ping</div>
+          <div class="card-notes">Grab lunch at one of the restaurants in Ngong Ping Village before heading to Tai O.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="card blue-border">
+          <div class="card-time">1:15 – 1:45 PM</div>
+          <div class="card-title"><span class="icon">🚌</span> Bus to Tai O</div>
+          <div class="card-loc">📍 Bus to Tai O Fishing Village</div>
+          <div class="card-notes">Take the scenic bus ride from Ngong Ping down to Tai O on the western coast of Lantau.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="card blue-border">
+          <div class="card-time">1:45 – 3:15 PM</div>
+          <div class="card-title"><span class="icon">🌊</span> Tai O Fishing Village</div>
+          <div class="card-loc">📍 Tai O, Lantau Island</div>
+          <div class="card-notes">Step back in time at this charming stilt-house fishing village. Wander the lanes, try local snacks, and watch the stilted homes over the waterway. Very photogenic!</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="card blue-border">
+          <div class="card-time">3:30 – 4:15 PM</div>
+          <div class="card-title"><span class="icon">🚌</span> Bus Back to Tung Chung</div>
+          <div class="card-loc">📍 Return to Tung Chung</div>
+          <div class="card-notes">Take the bus back to Tung Chung for dinner and the MTR home.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot green"></div>
+        <div class="card green-border">
+          <div class="card-time">4:15 – 5:30 PM</div>
+          <div class="card-title"><span class="icon">🍽️</span> Dinner at Citygate Outlets</div>
+          <div class="card-loc">📍 Citygate Outlets, Tung Chung</div>
+          <div class="card-notes">Stop for dinner at Citygate Outlets right next to the MTR station before heading back to the city.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="card blue-border">
+          <div class="card-time">5:30 – 6:30 PM</div>
+          <div class="card-title"><span class="icon">🚇</span> MTR Back to Hotel</div>
+          <div class="card-loc">📍 BP International, Jordan</div>
+          <div class="card-notes">Take the Tung Chung Line back to the city and rest up!</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="tip-box">
+      <span class="tip-icon">👟</span>
+      <div><strong>Wear comfy shoes!</strong> There's a lot of walking today — the Big Buddha has 268 steps and Tai O involves cobblestones. Start early to beat the crowds and midday heat.</div>
+    </div>
+  </div>
+
+  <!-- DAY 6 -->
+  <div class="day-section" id="day6">
+    <div class="day-header bg-culture" data-emoji="🌙">
+      <div class="day-label">Day 6 ⭐</div>
+      <h2>Museum · Dim Sum Lunch · Shopping · Night Market</h2>
+    </div>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="card red-border">
+          <div class="card-title"><span class="icon">🔬</span> Morning — Science Museum</div>
+          <div class="card-loc">📍 Hong Kong Science Museum</div>
+          <div class="card-notes">Kids and adults will love this interactive museum — great way to spend the morning before the city heats up!</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot green"></div>
+        <div class="card green-border">
+          <div class="card-title"><span class="icon">🥟</span> Dim Sum Lunch</div>
+          <div class="card-notes">Pick one of these legendary spots — hard to go wrong!</div>
+          <div class="pill-row">
+            <span class="pill highlight">🥟 DimDimSum Specialty Store</span>
+            <span class="pill highlight">🥟 One Dim Sum</span>
+            <span class="pill highlight">⭐ Tim Ho Wan (Michelin!)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="card orange-border">
+          <div class="card-title"><span class="icon">🛍️</span> Shopping — Mira Place</div>
+          <div class="card-loc">📍 Mira Place, Tsim Sha Tsui</div>
+          <div class="card-notes">Trendy mall with great local and international brands. Good for gifts and souvenirs too.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot blue"></div>
+        <div class="card blue-border">
+          <div class="card-title"><span class="icon">💤</span> Afternoon Rest at Hotel</div>
+          <div class="card-notes">Mandatory rest before the night market — save your energy for the evening!</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="card orange-border">
+          <div class="card-title"><span class="icon">👟</span> Optional Solo — Sneaker Street</div>
+          <div class="card-loc">📍 Fa Yuen Street (Sneaker Street)</div>
+          <div class="card-notes">If anyone in the family loves sneakers — this street is paradise. Rows of stores with every kind of sneaker imaginable!</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot gold"></div>
+        <div class="card gold-border">
+          <div class="card-title"><span class="icon">🌙</span> Night Market</div>
+          <div class="card-loc">📍 Temple Street Night Market</div>
+          <div class="card-notes">End your last full day with Hong Kong's most famous night market! Browse stalls for souvenirs, clothes, and gadgets. End with dinner at a local spot.</div>
+          <div class="pill-row">
+            <span class="pill highlight">🍲 Hing Kee Claypot Rice</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DAY 7 -->
+  <div class="day-section" id="day7">
+    <div class="day-header bg-departure" data-emoji="🏠">
+      <div class="day-label">Day 7</div>
+      <h2>Breakfast & Departure ✈️</h2>
+    </div>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot green"></div>
+        <div class="card green-border">
+          <div class="card-title"><span class="icon">🍳</span> Breakfast</div>
+          <div class="card-loc">📍 Australian Dairy Company</div>
+          <div class="card-notes">A Hong Kong institution! Famous for their silky steamed milk pudding, scrambled eggs, and macaroni soup. Quick, satisfying, and very local.</div>
+          <div class="pill-row">
+            <span class="pill highlight">⏰ Arrive early — queues form fast!</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot red"></div>
+        <div class="card red-border">
+          <div class="card-time">9:45 – 10:00 AM</div>
+          <div class="card-title"><span class="icon">🚖</span> Leave Hotel</div>
+          <div class="card-notes">Check out and grab a taxi to the airport. Allow extra time for luggage and check-in.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot gold"></div>
+        <div class="card gold-border">
+          <div class="card-time">1:40 PM</div>
+          <div class="card-title"><span class="icon">✈️</span> Departure Flight</div>
+          <div class="card-loc">📍 Hong Kong International Airport</div>
+          <div class="card-notes">Safe travels home! 🏠 Bring back lots of memories (and snacks from the airport duty-free!).</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="tip-box">
+      <span class="tip-icon">🎁</span>
+      <div><strong>Last-minute shopping:</strong> HK airport has a great selection of local treats to bring home — pineapple cakes, egg rolls, and HK milk tea sets make great pasalubong!</div>
+    </div>
+  </div>
+
+  <!-- ESSENTIALS -->
+  <div class="day-section" id="essentials">
+    <div class="day-header" style="background: linear-gradient(135deg, #0D1B3E, #1a3a7a);" data-emoji="📌">
+      <div class="day-label">Quick Reference</div>
+      <h2>Travel Essentials 📌</h2>
+    </div>
+
+    <div class="section-label">Getting Around</div>
+    <div class="essentials-grid">
+      <div class="ess-card">
+        <div class="ess-icon">🚇</div>
+        <div class="ess-title">MTR (Subway)</div>
+        <div class="ess-text">Fastest & cheapest way around Hong Kong. Get an Octopus Card for easy tapping.</div>
+      </div>
+      <div class="ess-card">
+        <div class="ess-icon">🚖</div>
+        <div class="ess-title">Taxis</div>
+        <div class="ess-text">Red taxis cover urban areas. Metered and generally affordable. Have hotel address in Chinese.</div>
+      </div>
+      <div class="ess-card">
+        <div class="ess-icon">⛴️</div>
+        <div class="ess-title">Star Ferry</div>
+        <div class="ess-text">Scenic & cheap crossing between Kowloon and HK Island. One of the world's best ferry rides!</div>
+      </div>
+      <div class="ess-card">
+        <div class="ess-icon">🚠</div>
+        <div class="ess-title">Peak Tram</div>
+        <div class="ess-text">Historic tram to Victoria Peak. Book tickets online to skip long queues.</div>
+      </div>
+    </div>
+
+    <div class="section-label">Hotels</div>
+    <div style="display:flex; flex-direction:column; gap:12px;">
+      <div class="card blue-border">
+        <div class="card-title"><span class="icon">🏰</span> Disney Explorer's Lodge (Days 1–3)</div>
+        <div class="card-loc">📍 Lantau Island, near Disneyland</div>
+        <div class="card-notes">Great themed hotel with gardens, playground, pool. ~15–20 min taxi from airport.</div>
+      </div>
+      <div class="card red-border">
+        <div class="card-title"><span class="icon">🏙️</span> BP International (Days 3–7)</div>
+        <div class="card-loc">📍 Jordan, Kowloon</div>
+        <div class="card-notes">Central location for city exploration. Near Temple Street Night Market. ~25–30 min from Disneyland.</div>
+      </div>
+    </div>
+
+    <div class="section-label">Must-Eat List 🍽️</div>
+    <div class="card gold-border">
+      <div class="pill-row">
+        <span class="pill highlight">🦆 Yat Lok Roast Goose</span>
+        <span class="pill highlight">🍜 Mak Man Kee Noodle Shop</span>
+        <span class="pill highlight">🥟 DimDimSum Specialty</span>
+        <span class="pill highlight">⭐ Tim Ho Wan (Michelin)</span>
+        <span class="pill highlight">🥟 One Dim Sum</span>
+        <span class="pill highlight">🍲 Hing Kee Claypot Rice</span>
+        <span class="pill highlight">🍳 Australian Dairy Company</span>
+      </div>
+    </div>
+
+    <div class="section-label">Money Tips 💰</div>
+    <div class="tip-box">
+      <span class="tip-icon">💳</span>
+      <div>
+        <strong>Currency: HKD (Hong Kong Dollar)</strong><br>
+        Get an <strong>Octopus Card</strong> for MTR, buses, ferries — and even 7-Eleven! Exchange cash at the airport or licensed money changers in the city (avoid hotel rates). Most malls accept cards.
+      </div>
+    </div>
+
+    <div class="section-label">Weather & Packing ☀️</div>
+    <div class="tip-box" style="background: linear-gradient(135deg, #DBEAFE, #BFDBFE); color: #1E3A5F;">
+      <span class="tip-icon">👜</span>
+      <div>
+        Bring <strong>comfortable walking shoes</strong> (lots of walking!), light layers for air-conditioned malls, sunscreen & hats for outdoor days, and a compact umbrella. Stay hydrated — especially on the Ngong Ping / Tai O day!
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function showDay(id) {
+    document.querySelectorAll('.day-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    const tabs = document.querySelectorAll('.tab');
+    const dayMap = { overview:0, day1:1, day2:2, day3:3, day4:4, day5:5, day6:6, day7:7, essentials:8 };
+    tabs[dayMap[id]].classList.add('active');
+    tabs[dayMap[id]].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
