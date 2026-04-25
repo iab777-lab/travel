@@ -1,1 +1,205 @@
-Travel Page
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Travel Itineraries</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,600;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      background: #f9f6f1;
+      color: #2c2416;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 4rem 1.5rem;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    header p.eyebrow {
+      font-size: .72rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: #b07d4a;
+      margin-bottom: .6rem;
+    }
+
+    header h1 {
+      font-family: 'Lora', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 600;
+      line-height: 1.15;
+      color: #2c2416;
+    }
+
+    header h1 em {
+      font-style: italic;
+      font-weight: 400;
+      color: #7a9e8e;
+    }
+
+    header p.sub {
+      margin-top: .8rem;
+      font-size: .95rem;
+      color: #8a7a66;
+      line-height: 1.6;
+    }
+
+    .divider {
+      width: 40px; height: 2px;
+      background: #b07d4a;
+      margin: 1.5rem auto 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1rem;
+      width: 100%;
+      max-width: 860px;
+    }
+
+    .card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: #fff;
+      border: 1px solid #ece5d8;
+      border-radius: 6px;
+      padding: 1.1rem 1.3rem;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color .2s, box-shadow .2s, transform .2s;
+    }
+
+    .card:hover {
+      border-color: #b07d4a;
+      box-shadow: 0 4px 18px rgba(176,125,74,.12);
+      transform: translateY(-2px);
+    }
+
+    .flag { font-size: 2rem; line-height: 1; flex-shrink: 0; }
+
+    .card-country {
+      font-family: 'Lora', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #2c2416;
+    }
+
+    .card-label {
+      font-size: .75rem;
+      color: #a0907a;
+      margin-top: .15rem;
+    }
+
+    .arrow {
+      margin-left: auto;
+      color: #d4b896;
+      font-size: 1rem;
+      flex-shrink: 0;
+      transition: transform .2s, color .2s;
+    }
+
+    .card:hover .arrow { transform: translateX(3px); color: #b07d4a; }
+
+    .card.add {
+      border-style: dashed;
+      color: #b5a494;
+      justify-content: center;
+      font-size: .85rem;
+      cursor: default;
+    }
+
+    footer {
+      margin-top: 3.5rem;
+      font-size: .75rem;
+      color: #c2b5a2;
+      letter-spacing: .06em;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <p class="eyebrow">My Travel Hub</p>
+    <h1>Country <em>Itineraries</em></h1>
+    <p class="sub">Click a destination to open its full itinerary.</p>
+    <div class="divider"></div>
+  </header>
+
+  <div class="grid">
+
+    <!-- Replace href="#" with your actual itinerary links -->
+
+    <a class="card" href="#">
+      <span class="flag">🇯🇵</span>
+      <div>
+        <div class="card-country">Japan</div>
+        <div class="card-label">View itinerary</div>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+
+    <a class="card" href="#">
+      <span class="flag">🇮🇹</span>
+      <div>
+        <div class="card-country">Italy</div>
+        <div class="card-label">View itinerary</div>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+
+    <a class="card" href="#">
+      <span class="flag">🇫🇷</span>
+      <div>
+        <div class="card-country">France</div>
+        <div class="card-label">View itinerary</div>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+
+    <a class="card" href="#">
+      <span class="flag">🇬🇷</span>
+      <div>
+        <div class="card-country">Greece</div>
+        <div class="card-label">View itinerary</div>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+
+    <a class="card" href="#">
+      <span class="flag">🇹🇭</span>
+      <div>
+        <div class="card-country">Thailand</div>
+        <div class="card-label">View itinerary</div>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+
+    <a class="card" href="#">
+      <span class="flag">🇵🇭</span>
+      <div>
+        <div class="card-country">Philippines</div>
+        <div class="card-label">View itinerary</div>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+
+    <div class="card add">＋ Add destination</div>
+
+  </div>
+
+  <footer>Replace each href="#" with your itinerary link.</footer>
+
+</body>
+</html>
