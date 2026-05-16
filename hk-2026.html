@@ -499,6 +499,86 @@
     .day-header { padding: 20px; }
     .card { padding: 14px 16px; }
   }
+
+  /* FOOD SECTION */
+  .food-day-block { margin-bottom: 20px; }
+  .food-day-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    border-radius: 14px 14px 0 0;
+    padding: 13px 18px;
+    font-size: 0.95rem;
+    font-weight: 700;
+  }
+  .fd-badge {
+    background: rgba(255,255,255,0.22);
+    border-radius: 8px;
+    padding: 2px 10px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .food-cards {
+    background: white;
+    border-radius: 0 0 14px 14px;
+    padding: 16px 18px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .food-cat {
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .food-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.87rem;
+    color: #333;
+    line-height: 1.5;
+    padding: 9px 12px;
+    background: var(--soft);
+    border-radius: 10px;
+  }
+  .food-item.star { background: #FEF3C7; }
+  .food-item .fi-icon { font-size: 1.2rem; flex-shrink: 0; }
+  .food-item .fi-name { font-weight: 700; color: var(--navy); display: block; }
+  .food-item .fi-sub { font-size: 0.79rem; color: var(--muted); }
+  .food-note {
+    font-size: 0.82rem;
+    color: #555;
+    padding: 7px 12px;
+    background: #F0F4FF;
+    border-radius: 10px;
+    border-left: 3px solid var(--sky);
+    line-height: 1.6;
+  }
+  .must-try-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 10px;
+    margin-top: 6px;
+  }
+  .must-try-item {
+    background: linear-gradient(135deg, #E8223A, #F4A623);
+    color: white;
+    border-radius: 12px;
+    padding: 13px 10px;
+    font-size: 0.83rem;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.4;
+  }
+  .must-try-item .mt-icon { font-size: 1.4rem; display: block; margin-bottom: 5px; }
 </style>
 </head>
 <body>
@@ -527,6 +607,7 @@
     <div class="tab" onclick="showDay('day6')">Day 6</div>
     <div class="tab" onclick="showDay('day7')">Day 7</div>
     <div class="tab" onclick="showDay('transport')">🚌 Transport</div>
+    <div class="tab" onclick="showDay('food')">🍽️ Food</div>
     <div class="tab" onclick="showDay('essentials')">📌 Essentials</div>
   </div>
 </div>
@@ -867,7 +948,7 @@
   <div class="day-section" id="day4">
     <div class="day-header bg-city" data-emoji="⭐">
       <div class="day-label">Day 4 ⭐ Highlight Day</div>
-      <h2>Peak · Ferry · K11 · Harbour Night</h2>
+      <h2>Ferry → Peak → Ki'son → Rest → Harbour 🌇</h2>
     </div>
     <div class="timeline">
 
@@ -877,20 +958,34 @@
           <div class="card-time">8:15 AM</div>
           <div class="card-title"><span class="icon">🚶</span> Leave Hotel</div>
           <div class="card-loc">📍 BP International</div>
-          <div class="card-notes">Head out early to beat the crowds at the Peak Tram.</div>
+          <div class="card-notes">Head out early — relaxed start, great skyline views incoming!</div>
         </div>
       </div>
 
       <div class="tl-item">
         <div class="tl-dot"></div>
         <div class="card blue-border">
-          <div class="card-time">8:15 – 8:45 AM</div>
+          <div class="card-time">8:45 – 9:00 AM</div>
+          <div class="card-title"><span class="icon">⛴️</span> Star Ferry — TST → Central</div>
+          <div class="card-loc">📍 Star Ferry, TST Pier</div>
+          <div class="card-notes">Board from TST Pier — sit on the upper deck for the best skyline views. Relaxed start to the day!</div>
+          <div class="pill-row">
+            <span class="pill highlight">🌅 Upper deck — better views</span>
+            <span class="pill tip">💰 Very affordable!</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="card blue-border">
+          <div class="card-time">9:00 – 9:20 AM</div>
           <div class="card-title"><span class="icon">🚖</span> Go to Peak Tram</div>
           <div class="card-loc">📍 Peak Tram Lower Terminus</div>
-          <div class="card-notes">Make your way to the Peak Tram station.</div>
+          <div class="card-notes">From the Central Ferry Pier, make your way to the Peak Tram station.</div>
           <div class="pill-row">
-            <span class="pill">🚖 Taxi (easiest)</span>
-            <span class="pill">🚇 MTR + walk</span>
+            <span class="pill">🚶 Walk ~15 min</span>
+            <span class="pill highlight">🚖 Taxi ~5–10 min (easier with kids 👍)</span>
           </div>
         </div>
       </div>
@@ -898,23 +993,22 @@
       <div class="tl-item">
         <div class="tl-dot"></div>
         <div class="card red-border">
-          <div class="card-time">9:00 – 9:30 AM</div>
+          <div class="card-time">9:20 – 9:45 AM</div>
           <div class="card-title"><span class="icon">🚋</span> Peak Tram — Ride Up</div>
           <div class="card-loc">📍 Peak Tram</div>
-          <div class="card-notes">The historic tram ride up is part of the experience — enjoy the steep climb and the views!</div>
+          <div class="card-notes">The historic tram ride up is part of the experience — enjoy the steep climb!</div>
         </div>
       </div>
 
       <div class="tl-item">
         <div class="tl-dot gold"></div>
         <div class="card red-border">
-          <div class="card-time">9:30 – 11:00 AM</div>
+          <div class="card-time">9:45 – 11:15 AM</div>
           <div class="card-title"><span class="icon">🌄</span> Victoria Peak — Explore</div>
           <div class="card-loc">📍 Victoria Peak</div>
-          <div class="card-notes">Iconic Hong Kong views from the top!</div>
+          <div class="card-notes">Iconic Hong Kong views from the top — don't overwalk, keep it light!</div>
           <ul class="options-list">
-            <li>🌿 Free viewing areas at the top</li>
-            <li>🚶 Lugard Road (short, scenic walk)</li>
+            <li>🚶 Lugard Road (short section only)</li>
             <li>🏛️ Peak Galleria rooftop views</li>
           </ul>
         </div>
@@ -923,12 +1017,11 @@
       <div class="tl-item">
         <div class="tl-dot"></div>
         <div class="card blue-border">
-          <div class="card-time">11:00 – 11:20 AM</div>
+          <div class="card-time">11:15 – 11:30 AM</div>
           <div class="card-title"><span class="icon">⬇️</span> Go Down from Peak</div>
-          <div class="card-notes">Head back down to Central.</div>
+          <div class="card-notes">Taxi down — fastest and easiest with kids.</div>
           <div class="pill-row">
-            <span class="pill">🚖 Taxi (best option)</span>
-            <span class="pill">🚌 Bus</span>
+            <span class="pill highlight">🚖 Taxi (fastest + easiest)</span>
           </div>
         </div>
       </div>
@@ -936,68 +1029,36 @@
       <div class="tl-item">
         <div class="tl-dot green"></div>
         <div class="card green-border">
-          <div class="card-time">11:30 AM – 12:15 PM</div>
-          <div class="card-title"><span class="icon">🍽️</span> Lunch</div>
-          <div class="card-loc">📍 Yat Lok Roast Goose</div>
-          <div class="card-notes">Famous roast goose — a must-try Hong Kong classic!</div>
+          <div class="card-time">11:30 AM – 12:30 PM</div>
+          <div class="card-title"><span class="icon">🍗</span> Lunch — Ki'son Roasted Goose</div>
+          <div class="card-loc">📍 Ki'son Roasted Goose</div>
+          <div class="card-notes">A Hong Kong roast classic — order well and enjoy!</div>
           <div class="pill-row">
-            <span class="pill highlight">⭐ Michelin-Recommended</span>
+            <span class="pill highlight">🦆 Roast goose rice</span>
+            <span class="pill highlight">🍖 Combination platter</span>
+            <span class="pill">🥩 Char siu</span>
+            <span class="pill">🍖 Roast pork</span>
           </div>
-        </div>
-      </div>
-
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="card blue-border">
-          <div class="card-time">12:15 – 12:30 PM</div>
-          <div class="card-title"><span class="icon">🚶</span> Walk to Central Ferry Piers</div>
-          <div class="card-loc">📍 Central Ferry Piers</div>
-          <div class="card-notes">Short walk from the restaurant to the ferry terminal.</div>
-        </div>
-      </div>
-
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="card blue-border">
-          <div class="card-time">12:30 – 12:45 PM</div>
-          <div class="card-title"><span class="icon">⛴️</span> Star Ferry Crossing</div>
-          <div class="card-loc">📍 Star Ferry</div>
-          <div class="card-notes">Cross Victoria Harbour on the iconic Star Ferry — one of the world's great short voyages!</div>
-          <div class="pill-row">
-            <span class="pill tip">💰 Very affordable!</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="card gold-border">
-          <div class="card-title"><span class="icon">📸</span> Clock Tower Quick Photo Stop</div>
-          <div class="card-loc">📍 Tsim Sha Tsui Clock Tower</div>
-          <div class="card-notes">5–10 min photo stop right at the ferry exit — iconic waterfront landmark!</div>
         </div>
       </div>
 
       <div class="tl-item">
         <div class="tl-dot red"></div>
         <div class="card red-border">
-          <div class="card-time">1:00 – 1:15 PM</div>
-          <div class="card-title"><span class="icon">🚖</span> Back to Hotel — Real Rest Block</div>
+          <div class="card-time">12:15 – 12:30 PM</div>
+          <div class="card-title"><span class="icon">🚖</span> Taxi Back to Hotel</div>
           <div class="card-loc">📍 BP International</div>
-          <div class="card-notes">Take a taxi back to the hotel for a proper midday rest. This is the game changer that makes your evening smooth!</div>
-          <div class="pill-row">
-            <span class="pill">🚖 Short taxi ride</span>
-          </div>
+          <div class="card-notes">Head straight back to the hotel after lunch for the all-important rest block.</div>
         </div>
       </div>
 
       <div class="tl-item">
         <div class="tl-dot gold"></div>
         <div class="card gold-border">
-          <div class="card-time">1:15 – 3:30 PM</div>
-          <div class="card-title"><span class="icon">💤</span> Rest / Nap / Recharge</div>
+          <div class="card-time">12:30 – 3:30 PM</div>
+          <div class="card-title"><span class="icon">💤</span> REST BLOCK — Important!</div>
           <div class="card-loc">📍 BP International</div>
-          <div class="card-notes">A full rest block before the best part of the day.</div>
+          <div class="card-notes">This is what makes your evening smooth — a proper rest before the best part of the day.</div>
           <ul class="options-list">
             <li>😴 Kids nap</li>
             <li>🚿 Shower and cool down</li>
@@ -1009,20 +1070,10 @@
       <div class="tl-item">
         <div class="tl-dot"></div>
         <div class="card blue-border">
-          <div class="card-time">3:45 – 4:00 PM</div>
-          <div class="card-title"><span class="icon">🚖</span> Go to K11 Musea</div>
-          <div class="card-loc">📍 K11 Musea</div>
-          <div class="card-notes">Head out refreshed — taxi to K11 Musea along the waterfront.</div>
-        </div>
-      </div>
-
-      <div class="tl-item">
-        <div class="tl-dot gold"></div>
-        <div class="card orange-border">
           <div class="card-time">4:00 – 5:45 PM</div>
-          <div class="card-title"><span class="icon">🛍️</span> K11 Musea — Light Explore + Chill</div>
+          <div class="card-title"><span class="icon">🛍️</span> K11 Musea — Chill + Light Shopping</div>
           <div class="card-loc">📍 K11 Musea</div>
-          <div class="card-notes">Relaxed browsing — no rushing.</div>
+          <div class="card-notes">Head out refreshed. Chill, snack, light shopping — no rushing.</div>
           <ul class="options-list">
             <li>😌 Sit-down breaks (don't walk nonstop)</li>
             <li>🌊 Harbour terrace (great pre-sunset views)</li>
@@ -1037,7 +1088,7 @@
           <div class="card-time">5:45 – 6:30 PM</div>
           <div class="card-title"><span class="icon">🍽️</span> Early Dinner — Food Court / Casual</div>
           <div class="card-loc">📍 K11 Musea Food Court</div>
-          <div class="card-notes">Eat early to avoid the dinner rush and secure good seats.</div>
+          <div class="card-notes">Eat early to avoid the dinner rush and secure good seats before heading to the waterfront.</div>
           <div class="pill-row">
             <span class="pill highlight">👉 Eat early — avoid rush + secure seats</span>
           </div>
@@ -1085,7 +1136,7 @@
         <div class="card blue-border">
           <div class="card-time">8:15 PM</div>
           <div class="card-title"><span class="icon">🚖</span> Return to Hotel</div>
-          <div class="card-notes">Taxi or MTR back to BP International, Jordan.</div>
+          <div class="card-notes">Short taxi ride back — everyone tired but happy, not exhausted. 😊</div>
         </div>
       </div>
 
@@ -1100,7 +1151,7 @@
   <div class="day-section" id="day5">
     <div class="day-header bg-nature" data-emoji="🌿">
       <div class="day-label">Day 5</div>
-      <h2>Ngong Ping 360 + Big Buddha + Tai O Village</h2>
+      <h2>Ngong Ping · Big Buddha · Citygate · Temple Street 🌿🍜</h2>
     </div>
     <div class="timeline">
 
@@ -1108,9 +1159,9 @@
         <div class="tl-dot"></div>
         <div class="card green-border">
           <div class="card-time">8:30 AM</div>
-          <div class="card-title"><span class="icon">🚶</span> Walk to MTR Station</div>
-          <div class="card-loc">📍 Jordan MTR Station</div>
-          <div class="card-notes">Head out early — it's a long but rewarding day on Lantau Island!</div>
+          <div class="card-title"><span class="icon">🚶</span> Leave Hotel</div>
+          <div class="card-loc">📍 BP International</div>
+          <div class="card-notes">Head out early — it's a full but rewarding day on Lantau Island!</div>
         </div>
       </div>
 
@@ -1128,9 +1179,9 @@
         <div class="tl-dot gold"></div>
         <div class="card green-border">
           <div class="card-time">10:00 – 10:25 AM</div>
-          <div class="card-title"><span class="icon">🚠</span> Ngong Ping 360 Cable Car</div>
+          <div class="card-title"><span class="icon">🚠</span> Ngong Ping 360 Cable Car — Ride Up</div>
           <div class="card-loc">📍 Ngong Ping 360, Lantau Island</div>
-          <div class="card-notes">Breathtaking cable car ride over the mountains and coastline to Lantau's plateau. Spectacular views!</div>
+          <div class="card-notes">Breathtaking cable car ride over the mountains and coastline to Lantau's plateau!</div>
           <div class="pill-row">
             <span class="pill tip">🎟️ Book tickets in advance online!</span>
           </div>
@@ -1140,80 +1191,99 @@
       <div class="tl-item">
         <div class="tl-dot gold"></div>
         <div class="card gold-border">
-          <div class="card-time">10:30 AM – 12:30 PM</div>
-          <div class="card-title"><span class="icon">🏯</span> Explore Ngong Ping Village</div>
-          <div class="card-notes">Take your time exploring these iconic landmarks:</div>
+          <div class="card-time">10:30 – 11:45 AM</div>
+          <div class="card-title"><span class="icon">🗿</span> Big Buddha + Monastery</div>
+          <div class="card-notes">Go straight to the main sights — don't linger too long before climbing!</div>
           <ul class="options-list">
-            <li>🏘️ Ngong Ping Village walk</li>
-            <li>⛩️ <strong>Po Lin Monastery</strong> — tranquil Buddhist monastery</li>
-            <li>🗿 <strong>Tian Tan Buddha (Big Buddha)</strong> — climb 268 steps to the base! (Optional)</li>
+            <li>🗿 <strong>Tian Tan Buddha</strong> — climb with breaks (15–25 min up), photos at base + top</li>
+            <li>⛩️ <strong>Po Lin Monastery</strong> — rest in shaded areas, light explore</li>
+          </ul>
+          <div class="pill-row">
+            <span class="pill highlight">👉 Don't overwalk — keep it light!</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot green"></div>
+        <div class="card green-border">
+          <div class="card-time">11:45 AM – 1:00 PM</div>
+          <div class="card-title"><span class="icon">🍽️</span> Lunch + Dessert — Relaxed Block</div>
+          <div class="card-loc">📍 Ngong Ping Village</div>
+          <div class="card-notes">Sit, cool down, and recharge before heading back. No rushing!</div>
+          <ul class="options-list">
+            <li>🍃 Po Lin Monastery vegetarian meal — quiet, unique experience</li>
+            <li>🍜 Ngong Ping Village casual spots — noodles / rice meals</li>
+            <li>🍦 Ice cream + drinks / light sweets after</li>
           </ul>
         </div>
       </div>
 
       <div class="tl-item">
-        <div class="tl-dot green"></div>
-        <div class="card green-border">
-          <div class="card-time">12:30 – 1:15 PM</div>
-          <div class="card-title"><span class="icon">🍽️</span> Lunch at Ngong Ping</div>
-          <div class="card-notes">Grab lunch at one of the restaurants in Ngong Ping Village before heading to Tai O.</div>
-        </div>
-      </div>
-
-      <div class="tl-item">
         <div class="tl-dot"></div>
         <div class="card blue-border">
-          <div class="card-time">1:15 – 1:45 PM</div>
-          <div class="card-title"><span class="icon">🚌</span> Bus to Tai O</div>
-          <div class="card-loc">📍 Bus to Tai O Fishing Village</div>
-          <div class="card-notes">Take the scenic bus ride from Ngong Ping down to Tai O on the western coast of Lantau.</div>
+          <div class="card-time">1:00 – 1:30 PM</div>
+          <div class="card-title"><span class="icon">🚠</span> Cable Car — Ride Down</div>
+          <div class="card-loc">📍 Ngong Ping → Tung Chung</div>
+          <div class="card-notes">Relax on the ride back down to Tung Chung — enjoy the views one more time!</div>
         </div>
       </div>
 
       <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="card blue-border">
-          <div class="card-time">1:45 – 3:15 PM</div>
-          <div class="card-title"><span class="icon">🌊</span> Tai O Fishing Village</div>
-          <div class="card-loc">📍 Tai O, Lantau Island</div>
-          <div class="card-notes">Step back in time at this charming stilt-house fishing village. Wander the lanes, try local snacks, and watch the stilted homes over the waterway. Very photogenic!</div>
-        </div>
-      </div>
-
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="card blue-border">
-          <div class="card-time">3:30 – 4:15 PM</div>
-          <div class="card-title"><span class="icon">🚌</span> Bus Back to Tung Chung</div>
-          <div class="card-loc">📍 Return to Tung Chung</div>
-          <div class="card-notes">Take the bus back to Tung Chung for dinner and the MTR home.</div>
-        </div>
-      </div>
-
-      <div class="tl-item">
-        <div class="tl-dot green"></div>
-        <div class="card green-border">
-          <div class="card-time">4:15 – 5:30 PM</div>
-          <div class="card-title"><span class="icon">🍽️</span> Dinner at Citygate Outlets</div>
+        <div class="tl-dot gold"></div>
+        <div class="card orange-border">
+          <div class="card-time">1:30 – 4:00 PM</div>
+          <div class="card-title"><span class="icon">🛍️</span> Citygate Outlets</div>
           <div class="card-loc">📍 Citygate Outlets, Tung Chung</div>
-          <div class="card-notes">Stop for dinner at Citygate Outlets right next to the MTR station before heading back to the city.</div>
+          <div class="card-notes">Light shopping — no rush, just browse and relax. Coffee or quick snack if needed.</div>
+          <div class="pill-row">
+            <span class="pill">👟 Nike, Adidas + more</span>
+            <span class="pill">☕ Coffee / snack stop</span>
+            <span class="pill highlight">💡 No rush — relaxed pace</span>
+          </div>
         </div>
       </div>
 
       <div class="tl-item">
         <div class="tl-dot"></div>
         <div class="card blue-border">
-          <div class="card-time">5:30 – 6:30 PM</div>
+          <div class="card-time">4:00 – 5:00 PM</div>
           <div class="card-title"><span class="icon">🚇</span> MTR Back to Hotel</div>
           <div class="card-loc">📍 BP International, Jordan</div>
-          <div class="card-notes">Take the Tung Chung Line back to the city and rest up!</div>
+          <div class="card-notes">Take the Tung Chung Line back to Jordan. Drop bags and have a short rest before the evening.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot gold"></div>
+        <div class="card gold-border">
+          <div class="card-time">6:00 PM onwards</div>
+          <div class="card-title"><span class="icon">🌙</span> Temple Street Night Market</div>
+          <div class="card-loc">📍 Temple Street Night Market</div>
+          <div class="card-notes">Just a short walk from the hotel — browse stalls, enjoy street food, and soak up the atmosphere!</div>
+          <div class="pill-row">
+            <span class="pill highlight">🍲 Hing Kee Claypot Rice 👍</span>
+            <span class="pill">🍢 Street food</span>
+            <span class="pill">🛍️ Souvenir browsing</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot green"></div>
+        <div class="card green-border">
+          <div class="card-title"><span class="icon">🍜</span> Dinner Alternative</div>
+          <div class="card-notes">If not in the mood for claypot rice:</div>
+          <div class="pill-row">
+            <span class="pill">🥟 DimDimSum Dim Sum</span>
+          </div>
         </div>
       </div>
 
     </div>
     <div class="tip-box">
       <span class="tip-icon">👟</span>
-      <div><strong>Wear comfy shoes!</strong> There's a lot of walking today — the Big Buddha has 268 steps and Tai O involves cobblestones. Start early to beat the crowds and midday heat.</div>
+      <div><strong>Wear comfy shoes!</strong> The Big Buddha has steps and Ngong Ping involves walking. Start early and take breaks. Temple Street is just a short stroll from the hotel — easy evening!</div>
     </div>
   </div>
 
@@ -1720,6 +1790,460 @@
 
   </div>
 
+  <!-- FOOD -->
+  <div class="day-section" id="food">
+    <div class="day-header" style="background: linear-gradient(135deg, #E8223A, #F4A623);" data-emoji="🍽️">
+      <div class="day-label">What to Eat & Where</div>
+      <h2>Food + Snack Cheat Sheet 🍽️</h2>
+    </div>
+
+    <!-- DAY 1 -->
+    <div class="food-day-block">
+      <div class="food-day-label" style="background: linear-gradient(135deg, #1a3a7a, #2980b9);">
+        <span class="fd-badge">Day 1</span> ✈️ Arrival
+      </div>
+      <div class="food-cards">
+        <div class="food-cat">Dinner</div>
+        <div class="food-item">
+          <span class="fi-icon">🏨</span>
+          <div><span class="fi-name">Hotel / Simple Takeaway</span><span class="fi-sub">Rest day — no snack mission needed!</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 2 -->
+    <div class="food-day-block">
+      <div class="food-day-label" style="background: linear-gradient(135deg, #4B2C8C, #8E44AD);">
+        <span class="fd-badge">Day 2</span> 🎢 Disneyland
+      </div>
+      <div class="food-cards">
+        <div class="food-cat">Must-Try Snacks Inside the Park</div>
+        <div class="food-item star">
+          <span class="fi-icon">🍿</span>
+          <div><span class="fi-name">Popcorn (Souvenir Buckets)</span><span class="fi-sub">Iconic Disney collectible — different flavours at each cart</span></div>
+        </div>
+        <div class="food-item star">
+          <span class="fi-icon">🍦</span>
+          <div><span class="fi-name">Mickey Ice Cream Bar</span><span class="fi-sub">The classic Mickey-shaped ice cream on a stick</span></div>
+        </div>
+        <div class="food-item">
+          <span class="fi-icon">🧇</span>
+          <div><span class="fi-name">Waffles / Churros</span><span class="fi-sub">Perfect afternoon snack between rides</span></div>
+        </div>
+        <div class="food-note">👉 Try these during your afternoon break when ride queues are longest</div>
+      </div>
+    </div>
+
+    <!-- DAY 3 -->
+    <div class="food-day-block">
+      <div class="food-day-label" style="background: linear-gradient(135deg, #4B2C8C, #1a3a7a);">
+        <span class="fd-badge">Day 3</span> 🏙️ City Transfer
+      </div>
+      <div class="food-cards">
+        <div class="food-cat">Dinner — LOCK THIS IN</div>
+        <div class="food-item star">
+          <span class="fi-icon">🍜</span>
+          <div><span class="fi-name">Mak Man Kee Noodle Shop</span><span class="fi-sub">⭐ Wonton noodles — a legendary Hong Kong bowl</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 4 -->
+    <div class="food-day-block">
+      <div class="food-day-label" style="background: linear-gradient(135deg, #C0392B, #E74C3C);">
+        <span class="fd-badge">Day 4</span> ⭐ Central + TST Food Day
+      </div>
+      <div class="food-cards">
+        <div class="food-cat">Lunch — LOCK THIS IN</div>
+        <div class="food-item star">
+          <span class="fi-icon">🦆</span>
+          <div><span class="fi-name">Yat Lok Roast Goose</span><span class="fi-sub">Roast goose + rice — Michelin-recommended, unmissable!</span></div>
+        </div>
+
+        <div class="food-cat" style="margin-top:8px;">🍡 Snack Crawl — TST Easy Walk Route</div>
+        <div class="food-item star">
+          <span class="fi-icon">🧇</span>
+          <div><span class="fi-name">Egg Waffles (Gai Daan Jai)</span><span class="fi-sub">The ultimate HK street snack — crispy outside, soft inside</span></div>
+        </div>
+        <div class="food-item star">
+          <span class="fi-icon">🍢</span>
+          <div><span class="fi-name">Curry Fish Balls</span><span class="fi-sub">Skewered, spicy, iconic — sold at street stalls everywhere</span></div>
+        </div>
+        <div class="food-item star">
+          <span class="fi-icon">🍞</span>
+          <div><span class="fi-name">Pineapple Bun with Butter</span><span class="fi-sub">Classic cha chaan teng item — warm, buttery, perfect</span></div>
+        </div>
+        <div class="food-item star">
+          <span class="fi-icon">🧋</span>
+          <div><span class="fi-name">HK Milk Tea</span><span class="fi-sub">Strong, creamy, silky — the soul of Hong Kong</span></div>
+        </div>
+        <div class="food-note">📍 <strong>Where:</strong> Streets near K11 / Harbour, TST — small street stalls and bakeries are everywhere. Keep eyes open while walking!</div>
+      </div>
+    </div>
+
+    <!-- DAY 5 -->
+    <div class="food-day-block">
+      <div class="food-day-label" style="background: linear-gradient(135deg, #1E8449, #27AE60);">
+        <span class="fd-badge">Day 5</span> 🌿 Ngong Ping + Tai O
+      </div>
+      <div class="food-cards">
+        <div class="food-cat">Lunch — LOCK THIS IN</div>
+        <div class="food-item star">
+          <span class="fi-icon">🍃</span>
+          <div><span class="fi-name">Po Lin Monastery Vegetarian Kitchen</span><span class="fi-sub">Unique vegetarian set meal inside the monastery grounds</span></div>
+        </div>
+
+        <div class="food-cat" style="margin-top:8px;">Ngong Ping Snacks</div>
+        <div class="food-item">
+          <span class="fi-icon">🍦</span>
+          <div><span class="fi-name">Ice Cream</span><span class="fi-sub">Great after the Big Buddha climb!</span></div>
+        </div>
+        <div class="food-item">
+          <span class="fi-icon">🥤</span>
+          <div><span class="fi-name">Cold Drinks</span><span class="fi-sub">Stay hydrated — it's a hot and walking-heavy day</span></div>
+        </div>
+
+        <div class="food-cat" style="margin-top:8px;">🌙 Dinner + Street Food — Temple Street Night Market</div>
+        <div class="food-item star">
+          <span class="fi-icon">🍲</span>
+          <div><span class="fi-name">Claypot Rice — Hing Kee ⭐</span><span class="fi-sub">The must-order dish at Night Market — smoky, flavourful</span></div>
+        </div>
+        <div class="food-item">
+          <span class="fi-icon">🍢</span>
+          <div><span class="fi-name">Skewers (Meat / Seafood)</span><span class="fi-sub">Grilled on-the-spot — try a few varieties</span></div>
+        </div>
+        <div class="food-item">
+          <span class="fi-icon">🍜</span>
+          <div><span class="fi-name">Fried Noodles</span><span class="fi-sub">Wok-tossed at street stalls — fast and delicious</span></div>
+        </div>
+        <div class="food-item">
+          <span class="fi-icon">🧃</span>
+          <div><span class="fi-name">Fresh Juices</span><span class="fi-sub">Freshly squeezed at market stalls</span></div>
+        </div>
+        <div class="food-item">
+          <span class="fi-icon">😄</span>
+          <div><span class="fi-name">Stinky Tofu (Optional)</span><span class="fi-sub">For the adventurous! Strong smell, surprisingly tasty</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 6 -->
+    <div class="food-day-block">
+      <div class="food-day-label" style="background: linear-gradient(135deg, #D35400, #E67E22);">
+        <span class="fd-badge">Day 6</span> 🛍️ Shopping + Snacks Day
+      </div>
+      <div class="food-cards">
+        <div class="food-cat">Lunch</div>
+        <div class="food-item star">
+          <span class="fi-icon">🥟</span>
+          <div><span class="fi-name">DimDimSum Specialty Store</span><span class="fi-sub">Walk from Science Museum — dim sum done right</span></div>
+        </div>
+
+        <div class="food-cat" style="margin-top:8px;">🛒 Snack Haul — VERY IMPORTANT</div>
+        <div class="food-note">📍 <strong>DON DON DONKI</strong> — this is your pasalubong + snack supply mission!</div>
+        <div class="food-item star">
+          <span class="fi-icon">🍫</span>
+          <div><span class="fi-name">Japanese KitKat</span><span class="fi-sub">Unique HK/Japan-exclusive flavours — matcha, hojicha, sakura</span></div>
+        </div>
+        <div class="food-item star">
+          <span class="fi-icon">🍜</span>
+          <div><span class="fi-name">Premium Instant Ramen</span><span class="fi-sub">Ichiran, Nissin, limited editions — great pasalubong</span></div>
+        </div>
+        <div class="food-item">
+          <span class="fi-icon">🍙</span>
+          <div><span class="fi-name">Onigiri</span><span class="fi-sub">Grab a few to eat later at the hotel or the next morning</span></div>
+        </div>
+        <div class="food-item">
+          <span class="fi-icon">🧃</span>
+          <div><span class="fi-name">Drinks</span><span class="fi-sub">Japanese teas, melon sodas, Calpico — grab a stash</span></div>
+        </div>
+
+        <div class="food-cat" style="margin-top:8px;">👟 Mong Kok Snack Stop (Optional)</div>
+        <div class="food-note">📍 Fa Yuen Street area — try if you see them on the street</div>
+        <div class="food-item">
+          <span class="fi-icon">🧋</span>
+          <div><span class="fi-name">Bubble Tea</span><span class="fi-sub">Countless shops — pick your poison</span></div>
+        </div>
+        <div class="food-item star">
+          <span class="fi-icon">🧇</span>
+          <div><span class="fi-name">Egg Waffles (Better at Night!)</span><span class="fi-sub">Night stalls here are arguably the best in HK</span></div>
+        </div>
+        <div class="food-item">
+          <span class="fi-icon">🍢</span>
+          <div><span class="fi-name">Skewers</span><span class="fi-sub">Street stalls everywhere in Mong Kok at night</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 7 -->
+    <div class="food-day-block">
+      <div class="food-day-label" style="background: linear-gradient(135deg, #2C3E50, #4A5568);">
+        <span class="fd-badge">Day 7</span> 🏠 Departure
+      </div>
+      <div class="food-cards">
+        <div class="food-cat">Breakfast — LOCK THIS IN</div>
+        <div class="food-item star">
+          <span class="fi-icon">🥐</span>
+          <div><span class="fi-name">Bakehouse</span><span class="fi-sub">Go at 7:30 AM — shorter lines, fresh out of the oven</span></div>
+        </div>
+        <div class="food-item star">
+          <span class="fi-icon">🥚</span>
+          <div><span class="fi-name">Egg Tarts ⭐ MUST BUY</span><span class="fi-sub">Hong Kong's most iconic pastry — buttery, silky, warm</span></div>
+        </div>
+        <div class="food-item">
+          <span class="fi-icon">🥐</span>
+          <div><span class="fi-name">Croissants</span><span class="fi-sub">Flaky and fresh — grab extras for the airport!</span></div>
+        </div>
+        <div class="food-note">✈️ <strong>Buy extras!</strong> Bring egg tarts and bread for airport snacks and the flight home.</div>
+      </div>
+    </div>
+
+    <!-- TEMPLE STREET FOOD ROUTE -->
+    <div class="section-label" style="margin-top:28px;">🗺️ Temple Street Night Market — Food Route</div>
+
+    <div class="food-day-block">
+      <div class="food-day-label" style="background: linear-gradient(135deg, #1a1a2e, #E8223A);">
+        <span class="fd-badge">Best Entry</span> 📍 Jordan Road Side (North Entrance)
+      </div>
+      <div class="food-cards">
+        <div class="food-note">👉 Closest to your hotel + best food cluster early. Just walk straight — <strong>no zigzag, one straight line</strong> south through the market.</div>
+
+        <div class="food-cat" style="margin-top:8px;">Stop 1 — Main Meal First 🍲</div>
+        <div class="food-item star">
+          <span class="fi-icon">🍲</span>
+          <div>
+            <span class="fi-name">Hing Kee Claypot Rice ⭐</span>
+            <span class="fi-sub">Order: Sausage + chicken claypot rice · Add egg · 1 pot good for sharing</span>
+          </div>
+        </div>
+        <div class="food-note">⏱️ Stay 30–40 mins · 💡 Go early — line builds fast!</div>
+
+        <div class="food-cat" style="margin-top:8px;">Stop 2 — Seafood Sharing 🦪</div>
+        <div class="food-item">
+          <span class="fi-icon">🦪</span>
+          <div>
+            <span class="fi-name">Garlic Scallops + Clams or Oysters</span>
+            <span class="fi-sub">Walk 2–3 min deeper into the street. Order 1–2 dishes only — snacks still ahead!</span>
+          </div>
+        </div>
+
+        <div class="food-cat" style="margin-top:8px;">Stop 3 — Quick Noodles 🍜 (Optional)</div>
+        <div class="food-item">
+          <span class="fi-icon">🍜</span>
+          <div>
+            <span class="fi-name">Beef Chow Fun OR Soy Sauce Noodles</span>
+            <span class="fi-sub">Get 1 plate to share · Choose stall with flames + long line = better taste 🔥</span>
+          </div>
+        </div>
+
+        <div class="food-cat" style="margin-top:8px;">Stop 4 — Walk &amp; Snack Zone 🦑</div>
+        <div class="food-item star">
+          <span class="fi-icon">🍢</span>
+          <div>
+            <span class="fi-name">Curry Fish Balls (must for kids 👍)</span>
+            <span class="fi-sub">Interactive + casual — the fun part for your kid!</span>
+          </div>
+        </div>
+        <div class="food-item">
+          <span class="fi-icon">🦑</span>
+          <div>
+            <span class="fi-name">Grilled Squid or Skewers</span>
+            <span class="fi-sub">Buy small bites as you walk — slow down and just nibble</span>
+          </div>
+        </div>
+
+        <div class="food-cat" style="margin-top:8px;">Stop 5 — Dessert Finish 🍮</div>
+        <div class="food-item star">
+          <span class="fi-icon">🥭</span>
+          <div>
+            <span class="fi-name">Mango Sago</span>
+            <span class="fi-sub">Refreshing after all the salty food — near middle/south end</span>
+          </div>
+        </div>
+        <div class="food-item">
+          <span class="fi-icon">🍮</span>
+          <div>
+            <span class="fi-name">Tofu Pudding</span>
+            <span class="fi-sub">Light option — also great for kids</span>
+          </div>
+        </div>
+        <div class="food-note">💡 <strong>Backup dessert:</strong> 佳佳甜品 (Kai Kai Dessert) — very famous, short walk off Temple Street. Great if street stalls are too crowded.</div>
+
+        <div class="food-cat" style="margin-top:8px;">⏱️ Time Plan</div>
+        <div class="food-note">
+          <strong>6:30 PM</strong> → Start at Jordan Road entrance<br>
+          <strong>7:15 PM</strong> → Finish main meal<br>
+          <strong>8:00 PM</strong> → Snacks + dessert<br>
+          <strong>8:30 PM</strong> → Done — perfect before it gets too crowded 👍
+        </div>
+
+        <div class="food-cat" style="margin-top:8px;">🚶 Exit + Walk Back to Hotel</div>
+        <div class="food-note">
+          Exit near <strong>Jordan MTR Exit A</strong> → walk along <strong>Austin Road</strong> straight to hotel. <strong>⏱️ ~8–12 min</strong>, flat, well-lit, safe.<br><br>
+          🚕 <strong>Backup (if tired):</strong> step out to Jordan Road, grab a taxi. <strong>~3–5 min to hotel.</strong>
+        </div>
+
+        <div class="food-cat" style="margin-top:8px;">💡 Smart Tips</div>
+        <div class="food-note">
+          • Do <strong>NOT</strong> walk the entire street end-to-end — best food is in the first 50–60%<br>
+          • If kids get tired: exit early → dessert at Kai Kai instead<br>
+          • <strong>Bring:</strong> wet wipes · small cash bills · water
+        </div>
+      </div>
+    </div>
+
+    <!-- HK STREET FOOD GUIDE -->
+    <div class="section-label" style="margin-top:28px;">🇭🇰 Hong Kong Street Food Guide</div>
+
+    <div class="food-day-block">
+      <div class="food-day-label" style="background: linear-gradient(135deg, #B7410E, #E67E22);">
+        <span class="fd-badge">Must-Try</span> Famous HK Street Foods
+      </div>
+      <div class="food-cards">
+        <div class="food-item star">
+          <span class="fi-icon">🧇</span>
+          <div>
+            <span class="fi-name">Egg Waffles (Gai Daan Jai) 👍 Kid Favorite</span>
+            <span class="fi-sub">Crispy outside, fluffy inside waffle balls · Flavours: original, chocolate, matcha</span>
+          </div>
+        </div>
+        <div class="food-item star">
+          <span class="fi-icon">🐟</span>
+          <div>
+            <span class="fi-name">Curry Fish Balls</span>
+            <span class="fi-sub">Bouncy fish balls in spicy curry sauce · Cheap, everywhere, very local · Mild spicy — ok for most kids</span>
+          </div>
+        </div>
+        <div class="food-item star">
+          <span class="fi-icon">🍍</span>
+          <div>
+            <span class="fi-name">Pineapple Bun with Butter (Bo Lo Bao)</span>
+            <span class="fi-sub">Sweet bun, crunchy top — no pineapple inside! Best with butter 🧈 · Perfect breakfast or snack</span>
+          </div>
+        </div>
+        <div class="food-item">
+          <span class="fi-icon">🍢</span>
+          <div>
+            <span class="fi-name">Siu Mai (Street Version)</span>
+            <span class="fi-sub">Small dumplings — different from dim sum version · Served with soy sauce + chili</span>
+          </div>
+        </div>
+        <div class="food-item">
+          <span class="fi-icon">🧀</span>
+          <div>
+            <span class="fi-name">Stinky Tofu (For the Brave 😄)</span>
+            <span class="fi-sub">Fermented tofu, deep fried · Strong smell 😅 but surprisingly good!</span>
+          </div>
+        </div>
+        <div class="food-item">
+          <span class="fi-icon">🦑</span>
+          <div>
+            <span class="fi-name">Grilled Seafood &amp; Skewers</span>
+            <span class="fi-sub">Squid · Scallops · Meat skewers · Very common in night markets 🔥</span>
+          </div>
+        </div>
+        <div class="food-item star">
+          <span class="fi-icon">🍜</span>
+          <div>
+            <span class="fi-name">Cheung Fun (Rice Noodle Rolls)</span>
+            <span class="fi-sub">Soft rice rolls with sweet + peanut sauce · Super smooth texture</span>
+          </div>
+        </div>
+        <div class="food-item star">
+          <span class="fi-icon">🍲</span>
+          <div>
+            <span class="fi-name">Claypot Rice ⭐ Must-Try at Night Markets</span>
+            <span class="fi-sub">Rice cooked in clay pot with toppings · Best part: crispy bottom!</span>
+          </div>
+        </div>
+        <div class="food-item star">
+          <span class="fi-icon">🥭</span>
+          <div>
+            <span class="fi-name">Mango Sago Dessert</span>
+            <span class="fi-sub">Sweet mango + tapioca · So refreshing after salty food</span>
+          </div>
+        </div>
+
+        <div class="food-cat" style="margin-top:8px;">📍 Where to Find These</div>
+        <div class="food-note">
+          🌙 <strong>Temple Street Night Market</strong> — night vibes + seafood + claypot<br>
+          🛍️ <strong>Mong Kok</strong> — best variety + street snacks (egg waffles, siu mai, cheung fun)<br>
+          🏙️ <strong>Tsim Sha Tsui / Jordan</strong> — near your hotel, easy access (pineapple bun, noodles, dim sum)
+        </div>
+      </div>
+    </div>
+
+    <!-- STREET FOOD CHECKLIST -->
+    <div class="section-label" style="margin-top:28px;">✅ Street Food Checklist — Tick These Off!</div>
+
+    <div class="food-day-block">
+      <div class="food-day-label" style="background: linear-gradient(135deg, #1E8449, #27AE60);">
+        <span class="fd-badge">Night Market</span> 🌙 Temple Street
+      </div>
+      <div class="food-cards">
+        <div class="food-note" style="margin-bottom:8px;">Complete these on your Temple Street nights (Day 5 &amp; 6)!</div>
+        <div class="food-item star"><span class="fi-icon">☐</span><div><span class="fi-name">🍲 Claypot rice ⭐ Priority</span></div></div>
+        <div class="food-item"><span class="fi-icon">☐</span><div><span class="fi-name">🐟 Curry fish balls</span></div></div>
+        <div class="food-item"><span class="fi-icon">☐</span><div><span class="fi-name">🦑 Grilled squid / skewers</span></div></div>
+        <div class="food-item"><span class="fi-icon">☐</span><div><span class="fi-name">🦪 Garlic scallops or clams</span></div></div>
+        <div class="food-item"><span class="fi-icon">☐</span><div><span class="fi-name">🍜 Fried noodles (wok hei)</span></div></div>
+        <div class="food-item"><span class="fi-icon">☐</span><div><span class="fi-name">🥭 Mango dessert or tofu pudding</span></div></div>
+      </div>
+    </div>
+
+    <div class="food-day-block">
+      <div class="food-day-label" style="background: linear-gradient(135deg, #D35400, #E67E22);">
+        <span class="fd-badge">Mong Kok</span> 🛍️ Street Snack Area
+      </div>
+      <div class="food-cards">
+        <div class="food-note" style="margin-bottom:8px;">Great as a snack stop, not a full meal — Day 6 solo run!</div>
+        <div class="food-item star"><span class="fi-icon">☐</span><div><span class="fi-name">🧇 Egg waffles</span></div></div>
+        <div class="food-item"><span class="fi-icon">☐</span><div><span class="fi-name">🍢 Siu mai (street version)</span></div></div>
+        <div class="food-item"><span class="fi-icon">☐</span><div><span class="fi-name">🍜 Cheung fun (rice rolls)</span></div></div>
+        <div class="food-item"><span class="fi-icon">☐</span><div><span class="fi-name">🧀 Stinky tofu (optional 😄)</span></div></div>
+        <div class="food-item"><span class="fi-icon">☐</span><div><span class="fi-name">🥤 Bubble tea / fresh juice</span></div></div>
+      </div>
+    </div>
+
+    <div class="food-day-block">
+      <div class="food-day-label" style="background: linear-gradient(135deg, #1a3a7a, #2980b9);">
+        <span class="fd-badge">Near Hotel</span> 🏙️ TST / Jordan Area
+      </div>
+      <div class="food-cards">
+        <div class="food-note" style="margin-bottom:8px;">Easy fallback if kids get tired — all close to BP International.</div>
+        <div class="food-item"><span class="fi-icon">☐</span><div><span class="fi-name">🍍 Pineapple bun with butter</span></div></div>
+        <div class="food-item"><span class="fi-icon">☐</span><div><span class="fi-name">🥟 Dim sum (quick version)</span></div></div>
+        <div class="food-item"><span class="fi-icon">☐</span><div><span class="fi-name">🍜 Local noodles (beef brisket / wonton)</span></div></div>
+      </div>
+    </div>
+
+    <div class="food-day-block">
+      <div class="food-day-label" style="background: linear-gradient(135deg, #8E44AD, #6B3FA0);">
+        <span class="fd-badge">Kids Mission</span> 👨‍👩‍👧‍👦 Must Complete!
+      </div>
+      <div class="food-cards">
+        <div class="food-note" style="margin-bottom:8px;">Mini mission for the kids — complete all = pick a toy/souvenir! 🎁😄</div>
+        <div class="food-item star"><span class="fi-icon">☐</span><div><span class="fi-name">🧇 Egg waffles</span></div></div>
+        <div class="food-item star"><span class="fi-icon">☐</span><div><span class="fi-name">🐟 Fish balls</span></div></div>
+        <div class="food-item star"><span class="fi-icon">☐</span><div><span class="fi-name">🍲 Claypot rice</span></div></div>
+        <div class="food-item star"><span class="fi-icon">☐</span><div><span class="fi-name">🥭 Mango dessert</span></div></div>
+        <div class="food-note">🥇 Claypot rice &nbsp;|&nbsp; 🥈 Egg waffles &nbsp;|&nbsp; 🥉 Fish balls &nbsp;|&nbsp; ⭐ Mango dessert &nbsp;|&nbsp; ⭐ Pineapple bun</div>
+      </div>
+    </div>
+
+    <!-- MUST-TRY LIST -->
+    <div class="section-label" style="margin-top:28px;">⭐ Must-Try Snack List — Do NOT Miss!</div>
+    <div class="must-try-grid">
+      <div class="must-try-item"><span class="mt-icon">🧇</span>Egg Waffles</div>
+      <div class="must-try-item"><span class="mt-icon">🍢</span>Curry Fish Balls</div>
+      <div class="must-try-item"><span class="mt-icon">🍞</span>Pineapple Bun</div>
+      <div class="must-try-item"><span class="mt-icon">🧋</span>HK Milk Tea</div>
+      <div class="must-try-item"><span class="mt-icon">🍲</span>Claypot Rice</div>
+      <div class="must-try-item"><span class="mt-icon">🥚</span>Bakehouse Egg Tarts</div>
+    </div>
+
+  </div>
+
   <!-- ESSENTIALS -->
   <div class="day-section" id="essentials">
     <div class="day-header" style="background: linear-gradient(135deg, #0D1B3E, #1a3a7a);" data-emoji="📌">
@@ -1814,7 +2338,7 @@
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
     document.getElementById(id).classList.add('active');
     const tabs = document.querySelectorAll('.tab');
-    const dayMap = { overview:0, day1:1, day2:2, day3:3, day4:4, day5:5, day6:6, day7:7, transport:8, essentials:9 };
+    const dayMap = { overview:0, day1:1, day2:2, day3:3, day4:4, day5:5, day6:6, day7:7, transport:8, food:9, essentials:10 };
     tabs[dayMap[id]].classList.add('active');
     tabs[dayMap[id]].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
     window.scrollTo({ top: 0, behavior: 'smooth' });
